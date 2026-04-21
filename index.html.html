@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>TikTok Shop คำนวณกำไร 2569</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0a0a0a;
+  --bg2:       #111111;
+  --bg3:       #181818;
+  --card:      #141414;
+  --border:    #262626;
+  --border2:   #333;
+  --red:       #fe2c55;
+  --pink:      #ff6b8b;
+  --cyan:      #25f4ee;
+  --green:     #05d69e;
+  --yellow:    #ffd700;
+  --orange:    #ff8c42;
+  --text:      #f0f0f0;
+  --muted:     #707070;
+  --muted2:    #505050;
+  --mono:      'IBM Plex Mono', monospace;
+  --sans:      'Noto Sans Thai', sans-serif;
+  --radius:    16px;
+  --radius-sm: 10px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding-bottom:60px;
+}
+
+/* ──────────── SCROLLBAR ──────────── */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+
+/* ──────────── TOP HEADER ──────────── */
+.app-header{
+  background:linear-gradient(135deg,#0d0d0d 0%,#1a0a10 100%);
+  border-bottom:1px solid var(--border);
+  padding:0 16px;
+  position:sticky;top:0;z-index:100;
+}
+.app-header-inner{
+  max-width:700px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:58px;
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-icon{
+  width:36px;height:36px;background:var(--red);
+  border-radius:9px;display:flex;align-items:center;justify-content:center;
+  font-size:18px;box-shadow:3px 3px 0 var(--cyan);flex-shrink:0;
+}
+.brand-name{
+  font-size:17px;font-weight:900;letter-spacing:-0.5px;
+  display:flex;flex-direction:column;line-height:1.1;
+}
+.brand-name .t1{color:var(--text);}
+.brand-name .t2{color:var(--red);font-size:10px;font-family:var(--mono);letter-spacing:1px;font-weight:400;}
+.year-badge{
+  background:var(--red);color:#fff;
+  font-size:11px;font-family:var(--mono);font-weight:700;
+  padding:4px 10px;border-radius:20px;letter-spacing:1px;
+}
+
+/* ──────────── LAYOUT ──────────── */
+.main{max-width:700px;margin:0 auto;padding:20px 14px 0;}
+
+/* SHOP BANNER */
+.shop-banner{
+  background:linear-gradient(135deg,#1a0610 0%,#100a1a 50%,#0a1010 100%);
+  border:1px solid var(--border);border-radius:20px;
+  padding:20px;margin-bottom:16px;
+  display:flex;align-items:center;gap:16px;
+  position:relative;overflow:hidden;
+}
+.shop-banner::before{
+  content:'';position:absolute;top:-30px;right:-30px;
+  width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle,rgba(254,44,85,0.15) 0%,transparent 70%);
+}
+.shop-avatar{
+  width:54px;height:54px;background:var(--bg3);
+  border:2px solid var(--border2);border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;flex-shrink:0;cursor:pointer;
+  transition:border-color .2s;
+}
+.shop-avatar:hover{border-color:var(--red);}
+.shop-info{flex:1;min-width:0;}
+.shop-name-edit{
+  font-size:20px;font-weight:900;
+  color:var(--text);outline:none;border:none;background:transparent;
+  width:100%;cursor:pointer;font-family:var(--sans);
+  border-bottom:1px dashed transparent;transition:border-color .2s;
+}
+.shop-name-edit:focus{border-bottom-color:var(--red);}
+.shop-sub{font-size:12px;color:var(--muted);margin-top:3px;font-family:var(--mono);}
+
+/* ──────────── SECTION HEADERS ──────────── */
+.sec{margin-bottom:14px;}
+.sec-title{
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--muted);
+  font-family:var(--mono);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ──────────── CARDS ──────────── */
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;margin-bottom:14px;
+}
+.card-pink{border-color:rgba(254,44,85,0.3);}
+
+/* ──────────── GRID INPUTS ──────────── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.grid1{display:grid;grid-template-columns:1fr;gap:10px;}
+@media(max-width:400px){.grid2{grid-template-columns:1fr;}.grid3{grid-template-columns:1fr 1fr;}}
+
+.field{display:flex;flex-direction:column;gap:6px;}
+.field label{
+  font-size:11px;font-weight:600;color:var(--muted);
+  letter-spacing:.3px;display:flex;align-items:center;gap:5px;
+}
+.field label .lbadge{
+  font-size:9px;padding:1px 5px;border-radius:3px;
+  background:rgba(254,44,85,.15);color:var(--red);font-family:var(--mono);
+}
+
+.inp-wrap{position:relative;}
+input[type=number],input[type=text],select{
+  width:100%;padding:11px 36px 11px 12px;
+  background:var(--bg3);border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);
+  font-size:15px;font-family:var(--mono);font-weight:600;
+  color:var(--text);transition:border-color .15s,box-shadow .15s;
+  appearance:none;-webkit-appearance:none;
+}
+input:focus,select:focus{
+  outline:none;border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(254,44,85,.12);
+}
+.inp-unit{
+  position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  font-size:10px;color:var(--muted2);pointer-events:none;font-family:var(--mono);
+}
+.sel-arr::after{
+  content:'▾';position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  color:var(--muted);pointer-events:none;font-size:11px;
+}
+select{padding-right:32px;cursor:pointer;}
+
+/* ──────────── FEE ROW (editable) ──────────── */
+.fee-row{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 0;border-bottom:1px solid var(--border);
+}
+.fee-row:last-child{border-bottom:none;}
+.fee-name{flex:1;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.fee-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;}
+.fee-inp{
+  width:80px;padding:6px 24px 6px 8px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:6px;font-size:13px;font-family:var(--mono);font-weight:700;
+  color:var(--text);text-align:right;
+}
+.fee-inp:focus{outline:none;border-color:var(--red);}
+.fee-pct{
+  position:relative;display:flex;align-items:center;
+}
+.fee-pct-lbl{
+  position:absolute;right:6px;font-size:10px;color:var(--muted);
+  pointer-events:none;font-family:var(--mono);
+}
+
+/* ──────────── TOGGLE ROWS ──────────── */
+.toggle-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 0;border-bottom:1px solid var(--border);gap:10px;
+}
+.toggle-row:last-child{border-bottom:none;}
+.toggle-info{display:flex;flex-direction:column;gap:2px;}
+.toggle-label{font-size:13px;font-weight:600;color:var(--text);}
+.toggle-sub{font-size:11px;color:var(--muted);font-family:var(--mono);}
+.toggle-right{display:flex;align-items:center;gap:8px;}
+.toggle-inp{
+  width:70px;padding:5px 20px 5px 8px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:6px;font-size:13px;font-family:var(--mono);font-weight:700;
+  color:var(--text);
+}
+.toggle-inp:focus{outline:none;border-color:var(--red);}
+.toggle-pct-lbl{font-size:10px;color:var(--muted);font-family:var(--mono);}
+
+/* Toggle switch */
+.sw{position:relative;width:42px;height:24px;flex-shrink:0;}
+.sw input{opacity:0;width:0;height:0;}
+.sw-track{
+  position:absolute;inset:0;background:var(--border2);
+  border-radius:24px;cursor:pointer;transition:background .2s;
+}
+.sw-track::before{
+  content:'';position:absolute;
+  width:18px;height:18px;left:3px;top:3px;
+  background:#fff;border-radius:50%;transition:transform .2s;
+}
+.sw input:checked+.sw-track{background:var(--red);}
+.sw input:checked+.sw-track::before{transform:translateX(18px);}
+
+/* ──────────── RESULTS ──────────── */
+.result-card{
+  background:linear-gradient(135deg,#120a0d 0%,#0a0a12 100%);
+  border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:14px;
+}
+.result-rows{padding:4px 0;}
+.r-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 18px;border-bottom:1px solid var(--border);
+  transition:background .1s;
+}
+.r-row:last-child{border-bottom:none;}
+.r-row:hover{background:rgba(255,255,255,.02);}
+.r-lbl{
+  font-size:12px;color:var(--muted);
+  display:flex;align-items:center;gap:8px;
+}
+.r-icon{
+  width:24px;height:24px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;font-size:12px;
+  flex-shrink:0;
+}
+.ic-g{background:rgba(5,214,158,.12);}
+.ic-r{background:rgba(254,44,85,.12);}
+.ic-y{background:rgba(255,215,0,.12);}
+.ic-b{background:rgba(37,244,238,.12);}
+.ic-o{background:rgba(255,140,66,.12);}
+.ic-p{background:rgba(180,100,255,.12);}
+.r-val{
+  font-size:14px;font-weight:700;font-family:var(--mono);color:var(--text);
+}
+.r-val.deduct{color:#e05555;}
+.r-val.income{color:#05b87e;}
+
+/* Net profit hero */
+.profit-hero{
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:22px 18px;text-align:center;position:relative;overflow:hidden;
+}
+.profit-hero::before{
+  content:'';position:absolute;top:-50px;left:50%;transform:translateX(-50%);
+  width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(254,44,85,.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.profit-lbl{
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);font-family:var(--mono);margin-bottom:8px;
+}
+.profit-num{
+  font-size:44px;font-weight:900;font-family:var(--mono);
+  letter-spacing:-2px;line-height:1;color:var(--green);transition:color .3s;
+}
+.profit-num.loss{color:var(--red);}
+.profit-num.zero{color:var(--muted);}
+.profit-unit{font-size:16px;color:var(--muted);font-family:var(--mono);}
+.profit-tags{display:flex;justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.ptag{
+  padding:4px 12px;border-radius:20px;
+  font-size:12px;font-weight:700;font-family:var(--mono);
+  background:rgba(5,214,158,.12);color:var(--green);transition:all .3s;
+}
+.ptag.loss{background:rgba(254,44,85,.12);color:var(--red);}
+.ptag.warn{background:rgba(255,215,0,.12);color:var(--yellow);}
+
+/* ──────────── SUGGEST PRICE ──────────── */
+.suggest-box{
+  background:linear-gradient(135deg,rgba(37,244,238,.05) 0%,rgba(254,44,85,.05) 100%);
+  border:1px solid rgba(37,244,238,.2);border-radius:var(--radius);
+  padding:18px;margin-bottom:14px;
+}
+.sug-title{
+  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--cyan);font-family:var(--mono);margin-bottom:14px;
+  display:flex;align-items:center;gap:6px;
+}
+.sug-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.sug-result{
+  background:var(--bg);border:1px solid rgba(37,244,238,.2);
+  border-radius:var(--radius-sm);padding:14px;text-align:center;
+}
+.sug-result .sug-lbl{font-size:10px;color:var(--muted);font-family:var(--mono);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.sug-result .sug-val{font-size:26px;font-weight:900;font-family:var(--mono);color:var(--cyan);letter-spacing:-1px;}
+.sug-result .sug-sub{font-size:10px;color:var(--muted);font-family:var(--mono);margin-top:3px;}
+
+/* ──────────── BUTTONS ──────────── */
+.btn-row{display:flex;gap:10px;margin-bottom:14px;}
+.btn{
+  flex:1;padding:14px 10px;border:none;border-radius:12px;
+  font-size:14px;font-weight:700;font-family:var(--sans);
+  cursor:pointer;transition:transform .1s,box-shadow .1s;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.btn:active{transform:scale(.97);}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 16px rgba(254,44,85,.3);}
+.btn-red:hover{box-shadow:0 6px 24px rgba(254,44,85,.4);}
+.btn-dark{background:var(--bg3);color:var(--text);border:1px solid var(--border);}
+.btn-dark:hover{border-color:var(--border2);}
+.btn-cyan{background:rgba(37,244,238,.1);color:var(--cyan);border:1px solid rgba(37,244,238,.25);}
+.btn-cyan:hover{background:rgba(37,244,238,.15);}
+.btn-green{background:rgba(5,214,158,.1);color:var(--green);border:1px solid rgba(5,214,158,.25);}
+
+/* ──────────── HISTORY TABLE ──────────── */
+.history-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+.history-head{
+  background:var(--bg2);padding:14px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+.history-head-title{
+  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);font-family:var(--mono);
+}
+.history-actions{display:flex;gap:8px;}
+.hbtn{
+  padding:5px 12px;border-radius:6px;border:none;cursor:pointer;
+  font-size:11px;font-weight:700;font-family:var(--mono);transition:all .15s;
+}
+.hbtn-csv{background:rgba(5,214,158,.12);color:var(--green);}
+.hbtn-csv:hover{background:rgba(5,214,158,.2);}
+.hbtn-clear{background:rgba(254,44,85,.1);color:var(--red);}
+.hbtn-clear:hover{background:rgba(254,44,85,.2);}
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;min-width:550px;}
+thead tr{background:var(--bg3);}
+th{
+  padding:10px 14px;font-size:10px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  color:var(--muted);font-family:var(--mono);text-align:left;
+  white-space:nowrap;border-bottom:1px solid var(--border);
+}
+td{
+  padding:11px 14px;font-size:13px;font-family:var(--mono);
+  border-bottom:1px solid var(--border);white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:rgba(255,255,255,.02);}
+.td-profit.pos{color:var(--green);}
+.td-profit.neg{color:var(--red);}
+.td-del{
+  color:var(--muted2);cursor:pointer;font-size:14px;
+  padding:4px 8px;border-radius:4px;border:none;background:transparent;
+  transition:color .15s,background .15s;
+}
+.td-del:hover{color:var(--red);background:rgba(254,44,85,.1);}
+.history-empty{
+  padding:30px;text-align:center;color:var(--muted2);
+  font-size:13px;font-family:var(--mono);
+}
+
+/* copy toast */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:#fff;color:#000;padding:10px 20px;border-radius:30px;
+  font-size:13px;font-weight:700;font-family:var(--mono);
+  opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;z-index:999;
+  white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.card,.suggest-box,.result-card,.history-card,.shop-banner{animation:fadeUp .35s ease both;}
+.card:nth-child(2){animation-delay:.04s;}
+.card:nth-child(3){animation-delay:.08s;}
+@keyframes numPop{0%{transform:scale(1);}40%{transform:scale(1.07);}100%{transform:scale(1);}}
+.pop{animation:numPop .22s ease;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="app-header-inner">
+    <div class="brand">
+      <div class="brand-icon">🎬</div>
+      <div class="brand-name">
+        <span class="t1">TikTok Shop Calculator</span>
+        <span class="t2">PROFIT ENGINE · อัปเดต 2569</span>
+      </div>
+    </div>
+    <div class="year-badge">2569</div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- SHOP BANNER -->
+  <div class="shop-banner">
+    <div class="shop-avatar" title="คลิกเพื่อเปลี่ยน Emoji">🏪</div>
+    <div class="shop-info">
+      <input class="shop-name-edit" type="text" value="ชื่อร้านของคุณ" id="shopName" title="คลิกเพื่อแก้ไขชื่อร้าน">
+      <div class="shop-sub">คลิกชื่อร้านเพื่อแก้ไข · ออกแบบสำหรับ TikTok Shop ไทย</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1: สินค้าและต้นทุน ══ -->
+  <div class="sec">
+    <div class="sec-title">📦 ข้อมูลสินค้าและต้นทุน</div>
+    <div class="card">
+      <div class="grid2">
+        <div class="field">
+          <label>ชื่อสินค้า (ใช้บันทึกประวัติ)</label>
+          <div class="inp-wrap">
+            <input type="text" id="productName" placeholder="เช่น ครีมหน้าขาว 50ml">
+          </div>
+        </div>
+        <div class="field">
+          <label>ราคาขาย <span class="lbadge">หลัก</span></label>
+          <div class="inp-wrap">
+            <input type="number" id="price" value="299" min="0" oninput="calc()">
+            <span class="inp-unit">฿</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>ต้นทุนสินค้า</label>
+          <div class="inp-wrap">
+            <input type="number" id="cost" value="120" min="0" oninput="calc()">
+            <span class="inp-unit">฿</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>ค่าส่งที่เก็บลูกค้า</label>
+          <div class="inp-wrap">
+            <input type="number" id="shipping" value="40" min="0" oninput="calc()">
+            <span class="inp-unit">฿</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>ต้นทุนค่าส่งจริง (ที่ร้านจ่าย)</label>
+          <div class="inp-wrap">
+            <input type="number" id="shippingCost" value="35" min="0" oninput="calc()">
+            <span class="inp-unit">฿</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>ค่าแพคของ / บรรจุภัณฑ์</label>
+          <div class="inp-wrap">
+            <input type="number" id="packCost" value="5" min="0" oninput="calc()">
+            <span class="inp-unit">฿</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2: ค่าธรรมเนียม TikTok 2569 ══ -->
+  <div class="sec">
+    <div class="sec-title">📊 ค่าธรรมเนียม TikTok Shop 2569 <span style="color:var(--red);font-size:9px;">(แก้ไขได้)</span></div>
+    <div class="card card-pink">
+      <div class="fee-row">
+        <div class="fee-name"><div class="fee-dot"></div>ค่าธรรมเนียมคำสั่งซื้อ (Order Fee)</div>
+        <div class="fee-pct">
+          <input class="fee-inp" type="number" id="feeOrder" value="4.28" step="0.01" min="0" oninput="calc()">
+          <span class="fee-pct-lbl">%</span>
+        </div>
+      </div>
+      <div class="fee-row">
+        <div class="fee-name"><div class="fee-dot"></div>ค่าธรรมเนียมการชำระเงิน (Payment)</div>
+        <div class="fee-pct">
+          <input class="fee-inp" type="number" id="feePayment" value="3.21" step="0.01" min="0" oninput="calc()">
+          <span class="fee-pct-lbl">%</span>
+        </div>
+      </div>
+      <div class="fee-row">
+        <div class="fee-name"><div class="fee-dot"></div>ค่าธรรมเนียมบริการ (Service)</div>
+        <div class="fee-pct">
+          <input class="fee-inp" type="number" id="feeService" value="2.14" step="0.01" min="0" oninput="calc()">
+          <span class="fee-pct-lbl">%</span>
+        </div>
+      </div>
+      <div class="fee-row" style="background:rgba(254,44,85,.04);border-radius:8px;padding:10px 8px;border:none;margin-top:6px;">
+        <div class="fee-name" style="color:var(--text);font-weight:700;">รวมค่าธรรมเนียม TikTok ทั้งหมด</div>
+        <div style="font-family:var(--mono);font-weight:900;font-size:16px;color:var(--red)" id="totalFeeDisplay">9.63%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3: ค่าธรรมเนียมเสริม ══ -->
+  <div class="sec">
+    <div class="sec-title">⚙️ ค่าใช้จ่ายเสริม (เปิด-ปิดได้)</div>
+    <div class="card">
+      <!-- Campaign -->
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div class="toggle-label">🎯 แคมเปญพิเศษ / Flash Sale</div>
+          <div class="toggle-sub">TikTok หักเพิ่มเมื่อเข้าร่วมแคมเปญ</div>
+        </div>
+        <div class="toggle-right">
+          <input class="toggle-inp" type="number" id="campaignRate" value="4" step="0.5" min="0" oninput="calc()">
+          <span class="toggle-pct-lbl">%</span>
+          <label class="sw"><input type="checkbox" id="campaignOn" onchange="calc()"><span class="sw-track"></span></label>
+        </div>
+      </div>
+      <!-- Affiliate -->
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div class="toggle-label">🤝 Affiliate / นายหน้า</div>
+          <div class="toggle-sub">ค่านายหน้าที่ให้ Creator ช่วยขาย</div>
+        </div>
+        <div class="toggle-right">
+          <input class="toggle-inp" type="number" id="affiliateRate" value="10" step="0.5" min="0" oninput="calc()">
+          <span class="toggle-pct-lbl">%</span>
+          <label class="sw"><input type="checkbox" id="affiliateOn" onchange="calc()"><span class="sw-track"></span></label>
+        </div>
+      </div>
+      <!-- Ads -->
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div class="toggle-label">📢 Ads (ค่าโฆษณาต่อ 1 ออเดอร์)</div>
+          <div class="toggle-sub">กรอกยอดค่าแอดที่ยอมจ่ายต่อชิ้น</div>
+        </div>
+        <div class="toggle-right">
+          <input class="toggle-inp" type="number" id="adsAmount" value="15" step="1" min="0" oninput="calc()" style="width:80px;">
+          <span class="toggle-pct-lbl">฿</span>
+          <label class="sw"><input type="checkbox" id="adsOn" onchange="calc()"><span class="sw-track"></span></label>
+        </div>
+      </div>
+      <!-- Tax WHT -->
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div class="toggle-label">🧾 ภาษีหัก ณ ที่จ่าย (WHT)</div>
+          <div class="toggle-sub">สำหรับนิติบุคคลหรือที่ถูกหัก</div>
+        </div>
+        <div class="toggle-right">
+          <input class="toggle-inp" type="number" id="whtRate" value="3" step="0.5" min="0" oninput="calc()">
+          <span class="toggle-pct-lbl">%</span>
+          <label class="sw"><input type="checkbox" id="whtOn" onchange="calc()"><span class="sw-track"></span></label>
+        </div>
+      </div>
+      <!-- VAT -->
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div class="toggle-label">🏛️ VAT 7%</div>
+          <div class="toggle-sub">สำหรับร้านที่จดทะเบียนภาษีมูลค่าเพิ่ม</div>
+        </div>
+        <div class="toggle-right">
+          <span style="font-size:13px;font-family:var(--mono);color:var(--muted);margin-right:8px;">7%</span>
+          <label class="sw"><input type="checkbox" id="vatOn" onchange="calc()"><span class="sw-track"></span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ RESULT BREAKDOWN ══ -->
+  <div class="sec">
+    <div class="sec-title">📈 สรุปผลการคำนวณ</div>
+  </div>
+  <div class="result-card">
+    <div class="result-rows">
+      <div class="r-row">
+        <div class="r-lbl"><div class="r-icon ic-g">💰</div>รายได้รวม (ราคา + ค่าส่ง)</div>
+        <div class="r-val income" id="rRevenue">—</div>
+      </div>
+      <div class="r-row">
+        <div class="r-lbl"><div class="r-icon ic-r">📉</div>ค่าธรรมเนียม TikTok (<span id="rFeesPctLabel">—</span>)</div>
+        <div class="r-val deduct" id="rFees">—</div>
+      </div>
+      <div class="r-row" id="rowCampaign" style="display:none;">
+        <div class="r-lbl"><div class="r-icon ic-o">🎯</div>ค่าแคมเปญ (<span id="rCampPctLabel">—</span>)</div>
+        <div class="r-val deduct" id="rCampaign">—</div>
+      </div>
+      <div class="r-row" id="rowAffiliate" style="display:none;">
+        <div class="r-lbl"><div class="r-icon ic-p">🤝</div>ค่า Affiliate (<span id="rAffPctLabel">—</span>)</div>
+        <div class="r-val deduct" id="rAffiliate">—</div>
+      </div>
+      <div class="r-row" id="rowAds" style="display:none;">
+        <div class="r-lbl"><div class="r-icon ic-y">📢</div>ค่า Ads (ต่อออเดอร์)</div>
+        <div class="r-val deduct" id="rAds">—</div>
+      </div>
+      <div class="r-row" id="rowWht" style="display:none;">
+        <div class="r-lbl"><div class="r-icon ic-y">🧾</div>ภาษีหัก ณ ที่จ่าย (<span id="rWhtPctLabel">—</span>)</div>
+        <div class="r-val deduct" id="rWht">—</div>
+      </div>
+      <div class="r-row" id="rowVat" style="display:none;">
+        <div class="r-lbl"><div class="r-icon ic-b">🏛️</div>VAT 7%</div>
+        <div class="r-val deduct" id="rVat">—</div>
+      </div>
+      <div class="r-row">
+        <div class="r-lbl"><div class="r-icon ic-r">📦</div>ต้นทุนสินค้า</div>
+        <div class="r-val deduct" id="rCost">—</div>
+      </div>
+      <div class="r-row">
+        <div class="r-lbl"><div class="r-icon ic-o">🚚</div>ต้นทุนค่าส่ง + บรรจุภัณฑ์</div>
+        <div class="r-val deduct" id="rShipCost">—</div>
+      </div>
+    </div>
+    <div class="profit-hero">
+      <div class="profit-lbl">กำไรสุทธิ / ออเดอร์</div>
+      <div class="profit-num" id="rProfit">0</div>
+      <div class="profit-unit">บาท</div>
+      <div class="profit-tags">
+        <div class="ptag" id="rMarginTag">0% margin</div>
+        <div class="ptag" id="rRoiTag">ROI 0%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SUGGEST PRICE ══ -->
+  <div class="suggest-box">
+    <div class="sug-title">🤖 คำนวณราคาขายที่แนะนำ</div>
+    <div class="grid2">
+      <div class="field">
+        <label>กำไรที่ต้องการ (บาท)</label>
+        <div class="inp-wrap">
+          <input type="number" id="wantedProfit" value="100" min="0" oninput="calcSuggest()">
+          <span class="inp-unit">฿</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>ค่าส่งที่จะเก็บลูกค้า</label>
+        <div class="inp-wrap">
+          <input type="number" id="sugShipping" value="40" min="0" oninput="calcSuggest()">
+          <span class="inp-unit">฿</span>
+        </div>
+      </div>
+    </div>
+    <div class="sug-grid">
+      <div class="sug-result">
+        <div class="sug-lbl">ราคาขายที่แนะนำ</div>
+        <div class="sug-val" id="sugPrice">—</div>
+        <div class="sug-sub">บาท (ปัดขึ้น)</div>
+      </div>
+      <div class="sug-result">
+        <div class="sug-lbl">% ค่าธรรมเนียมรวม</div>
+        <div class="sug-val" id="sugTotalFee">—</div>
+        <div class="sug-sub">% ที่ถูกหักจากยอดขาย</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ACTION BUTTONS ══ -->
+  <div class="btn-row">
+    <button class="btn btn-red" onclick="saveHistory()">💾 บันทึกประวัติ</button>
+    <button class="btn btn-cyan" onclick="copySummary()">📋 คัดลอกสรุป</button>
+    <button class="btn btn-dark" onclick="resetAll()">🔄 รีเซ็ต</button>
+  </div>
+
+  <!-- ══ HISTORY TABLE ══ -->
+  <div class="sec">
+    <div class="sec-title">📋 ประวัติการคำนวณ</div>
+  </div>
+  <div class="history-card">
+    <div class="history-head">
+      <div class="history-head-title">รายการที่บันทึก</div>
+      <div class="history-actions">
+        <button class="hbtn hbtn-csv" onclick="exportCSV()">⬇ Export CSV</button>
+        <button class="hbtn hbtn-clear" onclick="clearHistory()">🗑 ล้างทั้งหมด</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>สินค้า</th>
+            <th>ราคาขาย</th>
+            <th>ต้นทุนรวม</th>
+            <th>ค่าธรรมเนียม</th>
+            <th>กำไรสุทธิ</th>
+            <th>Margin</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="historyBody">
+          <tr><td colspan="8" class="history-empty">ยังไม่มีรายการ กด "บันทึกประวัติ" เพื่อเพิ่ม</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ─── state ─── */
+let history = [];
+
+/* ─── utils ─── */
+const g = id => document.getElementById(id);
+const fmtB = n => n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtS = n => n.toLocaleString('th-TH',{minimumFractionDigits:0,maximumFractionDigits:0});
+
+function showToast(msg){
+  const t = g('toast'); t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+function numPop(id){
+  const el = g(id);
+  el.classList.remove('pop');
+  void el.offsetWidth;
+  el.classList.add('pop');
+}
+
+function sv(id, val){
+  const el = g(id);
+  if(el) el.textContent = val;
+  numPop(id);
+}
+
+/* ─── main calc ─── */
+function calc(){
+  const price      = +g('price').value      || 0;
+  const cost       = +g('cost').value       || 0;
+  const shipping   = +g('shipping').value   || 0;
+  const shipCost   = +g('shippingCost').value || 0;
+  const packCost   = +g('packCost').value   || 0;
+
+  const feeOrder   = +g('feeOrder').value   || 0;
+  const feePay     = +g('feePayment').value || 0;
+  const feeSvc     = +g('feeService').value || 0;
+  const totalTTFee = feeOrder + feePay + feeSvc;
+
+  g('totalFeeDisplay').textContent = totalTTFee.toFixed(2) + '%';
+
+  const campOn  = g('campaignOn').checked;
+  const campRate= +g('campaignRate').value || 0;
+  const affOn   = g('affiliateOn').checked;
+  const affRate = +g('affiliateRate').value || 0;
+  const adsOn   = g('adsOn').checked;
+  const adsBaht = +g('adsAmount').value || 0;
+  const whtOn   = g('whtOn').checked;
+  const whtRate = +g('whtRate').value || 0;
+  const vatOn   = g('vatOn').checked;
+
+  const base    = price + shipping; // TikTok คิดจาก ราคา + ค่าส่ง
+  const ttFeeAmt   = base * totalTTFee / 100;
+  const campAmt    = campOn  ? base * campRate / 100 : 0;
+  const affAmt     = affOn   ? price * affRate / 100 : 0;
+  const adsAmt     = adsOn   ? adsBaht : 0;
+  const whtAmt     = whtOn   ? base * whtRate / 100 : 0;
+  const vatAmt     = vatOn   ? base * 7 / 100 : 0;
+  const totalShipCost = shipCost + packCost;
+  const totalCost  = cost + totalShipCost;
+
+  const revenue    = base;
+  const totalDeduct= ttFeeAmt + campAmt + affAmt + adsAmt + whtAmt + vatAmt + totalCost;
+  const profit     = revenue - totalDeduct;
+  const margin     = price > 0 ? (profit / price * 100) : 0;
+  const roi        = totalCost > 0 ? (profit / totalCost * 100) : 0;
+
+  // Update displays
+  sv('rRevenue', fmtB(revenue) + ' ฿');
+  g('rFeesPctLabel').textContent = totalTTFee.toFixed(2) + '%';
+  sv('rFees', '-' + fmtB(ttFeeAmt) + ' ฿');
+  sv('rCost', '-' + fmtB(cost) + ' ฿');
+  sv('rShipCost', '-' + fmtB(totalShipCost) + ' ฿');
+
+  // optional rows
+  const rows = [
+    ['rowCampaign','rCampaign','rCampPctLabel', campOn, '-'+fmtB(campAmt)+' ฿', campRate.toFixed(1)+'%'],
+    ['rowAffiliate','rAffiliate','rAffPctLabel', affOn,  '-'+fmtB(affAmt)+' ฿',  affRate.toFixed(1)+'%'],
+    ['rowWht','rWht','rWhtPctLabel', whtOn, '-'+fmtB(whtAmt)+' ฿', whtRate.toFixed(1)+'%'],
+  ];
+  rows.forEach(([rowId, valId, pctId, on, val, pct])=>{
+    g(rowId).style.display = on ? '' : 'none';
+    if(on){ sv(valId, val); if(pctId) g(pctId).textContent = pct; }
+  });
+  g('rowAds').style.display = adsOn ? '' : 'none';
+  if(adsOn) sv('rAds', '-'+fmtB(adsAmt)+' ฿');
+  g('rowVat').style.display = vatOn ? '' : 'none';
+  if(vatOn) sv('rVat', '-'+fmtB(vatAmt)+' ฿');
+
+  // Profit
+  const pEl = g('rProfit');
+  pEl.textContent = fmtB(profit);
+  pEl.className = 'profit-num ' + (profit < 0 ? 'loss' : profit === 0 ? 'zero' : '');
+  numPop('rProfit');
+
+  const mTag = g('rMarginTag');
+  const rTag = g('rRoiTag');
+  mTag.textContent = margin.toFixed(1) + '% margin';
+  rTag.textContent = 'ROI ' + roi.toFixed(0) + '%';
+  mTag.className = 'ptag ' + (profit < 0 ? 'loss' : margin < 15 ? 'warn' : '');
+  rTag.className = 'ptag ' + (roi < 0 ? 'loss' : roi < 30 ? 'warn' : '');
+
+  calcSuggest();
+  return {price, cost, shipping, shipCost, packCost, totalTTFee, campAmt, affAmt, adsAmt, whtAmt, vatAmt, totalCost, revenue, profit, margin, roi, totalDeduct};
+}
+
+/* ─── suggest price ─── */
+function calcSuggest(){
+  const wantedProfit = +g('wantedProfit').value || 0;
+  const cost         = +g('cost').value || 0;
+  const shipCost     = +g('shippingCost').value || 0;
+  const packCost     = +g('packCost').value || 0;
+  const sugShip      = +g('sugShipping').value || 0;
+  const totalCost    = cost + shipCost + packCost;
+
+  const feeOrder = +g('feeOrder').value || 0;
+  const feePay   = +g('feePayment').value || 0;
+  const feeSvc   = +g('feeService').value || 0;
+  let totalFee   = feeOrder + feePay + feeSvc;
+  if(g('campaignOn').checked) totalFee += (+g('campaignRate').value || 0);
+  if(g('whtOn').checked)      totalFee += (+g('whtRate').value || 0);
+  if(g('vatOn').checked)      totalFee += 7;
+  // affiliate is on price
+  const affRate = g('affiliateOn').checked ? (+g('affiliateRate').value || 0) : 0;
+  const adsAmt  = g('adsOn').checked ? (+g('adsAmount').value || 0) : 0;
+
+  // base = price + sugShip; fees = base * totalFee/100; aff = price * affRate/100
+  // profit = price + sugShip - base*(totalFee/100) - price*(affRate/100) - totalCost - adsAmt = wantedProfit
+  // price(1 - totalFee/100 - affRate/100) = wantedProfit + totalCost + adsAmt - sugShip*(1 - totalFee/100)
+  const feeDec = totalFee / 100;
+  const affDec = affRate / 100;
+  const divisor = 1 - feeDec - affDec;
+  if(divisor <= 0){ g('sugPrice').textContent = '∞'; return; }
+
+  const numerator = wantedProfit + totalCost + adsAmt - sugShip * (1 - feeDec);
+  const rawPrice  = numerator / divisor;
+  const roundedPrice = Math.ceil(rawPrice);
+
+  g('sugPrice').textContent = fmtS(roundedPrice);
+  g('sugTotalFee').textContent = totalFee.toFixed(2);
+}
+
+/* ─── save history ─── */
+function saveHistory(){
+  const d = calc();
+  const name = g('productName').value || 'ไม่ระบุชื่อ';
+  history.push({
+    no: history.length + 1,
+    name,
+    price: d.price,
+    totalCost: d.totalCost,
+    feesAmt: d.totalDeduct - d.totalCost,
+    profit: d.profit,
+    margin: d.margin,
+  });
+  renderHistory();
+  showToast('✅ บันทึกแล้ว: ' + name);
+}
+
+function renderHistory(){
+  const tb = g('historyBody');
+  if(history.length === 0){
+    tb.innerHTML = '<tr><td colspan="8" class="history-empty">ยังไม่มีรายการ กด "บันทึกประวัติ" เพื่อเพิ่ม</td></tr>';
+    return;
+  }
+  tb.innerHTML = history.map((h,i)=>`
+    <tr>
+      <td style="color:var(--muted2)">${h.no}</td>
+      <td style="color:var(--text);font-weight:600">${h.name}</td>
+      <td>${fmtB(h.price)} ฿</td>
+      <td>${fmtB(h.totalCost)} ฿</td>
+      <td style="color:var(--red)">-${fmtB(h.feesAmt)} ฿</td>
+      <td class="td-profit ${h.profit>=0?'pos':'neg'}">${fmtB(h.profit)} ฿</td>
+      <td style="color:${h.margin>=0?'var(--green)':'var(--red)'}">${h.margin.toFixed(1)}%</td>
+      <td><button class="td-del" onclick="delHistory(${i})">✕</button></td>
+    </tr>
+  `).join('');
+}
+
+function delHistory(i){
+  history.splice(i,1);
+  history.forEach((h,j)=> h.no = j+1);
+  renderHistory();
+}
+
+function clearHistory(){
+  if(history.length === 0) return;
+  if(confirm('ลบประวัติทั้งหมด?')){ history=[]; renderHistory(); }
+}
+
+/* ─── export CSV ─── */
+function exportCSV(){
+  if(history.length === 0){ showToast('ไม่มีข้อมูลให้ Export'); return; }
+  const BOM = '\uFEFF';
+  const header = ['#','ชื่อสินค้า','ราคาขาย','ต้นทุนรวม','ค่าธรรมเนียม','กำไรสุทธิ','Margin %'];
+  const rows = history.map(h=>[h.no, h.name, h.price.toFixed(2), h.totalCost.toFixed(2), h.feesAmt.toFixed(2), h.profit.toFixed(2), h.margin.toFixed(2)]);
+  const csv = BOM + [header, ...rows].map(r=>r.join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='tiktok-shop-2569.csv'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('📊 ดาวน์โหลด CSV แล้ว');
+}
+
+/* ─── copy summary ─── */
+function copySummary(){
+  const d = calc();
+  const shop = g('shopName').value || 'ร้านของฉัน';
+  const name = g('productName').value || 'ไม่ระบุสินค้า';
+  const feeTotal = +g('feeOrder').value + +g('feePayment').value + +g('feeService').value;
+  const text = [
+    `🎬 TikTok Shop สรุปกำไร 2569`,
+    `🏪 ${shop}`,
+    `📦 สินค้า: ${name}`,
+    `─────────────────`,
+    `💰 ราคาขาย:         ${fmtB(d.price)} ฿`,
+    `🚚 ค่าส่งเก็บลูกค้า: ${fmtB(d.shipping)} ฿`,
+    `📉 รวมค่าธรรมเนียม: -${fmtB(d.ttFeeAmt||0)} ฿ (${feeTotal.toFixed(2)}%)`,
+    `📦 ต้นทุนรวม:       -${fmtB(d.totalCost)} ฿`,
+    `─────────────────`,
+    `✅ กำไรสุทธิ: ${fmtB(d.profit)} ฿ (${d.margin.toFixed(1)}% margin)`,
+    `🔢 ROI: ${d.roi.toFixed(0)}%`,
+    `─────────────────`,
+    `#TikTokShop #คำนวณกำไร2569`,
+  ].join('\n');
+  navigator.clipboard.writeText(text).then(()=>showToast('📋 คัดลอกแล้ว! นำไปวางใน Line/FB ได้เลย'));
+}
+
+/* ─── reset ─── */
+function resetAll(){
+  g('price').value='299'; g('cost').value='120';
+  g('shipping').value='40'; g('shippingCost').value='35';
+  g('packCost').value='5'; g('productName').value='';
+  g('campaignOn').checked=false; g('affiliateOn').checked=false;
+  g('adsOn').checked=false; g('whtOn').checked=false; g('vatOn').checked=false;
+  calc(); showToast('🔄 รีเซ็ตแล้ว');
+}
+
+/* ─── shop avatar emoji cycle ─── */
+const emojis = ['🏪','🛍️','🎁','🧴','👗','🍱','💄','📱','🎮','🐾'];
+let emojiIdx=0;
+document.querySelector('.shop-avatar').addEventListener('click',function(){
+  emojiIdx=(emojiIdx+1)%emojis.length;
+  this.textContent=emojis[emojiIdx];
+});
+
+/* ─── init ─── */
+window.onload = calc;
+</script>
+</body>
+</html>
